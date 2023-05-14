@@ -13,7 +13,7 @@ const Banner = () => {
                 <div className='absolute h-full rounded-xl flex items-center  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)]'>
                     <div className='text-white space-y-7 md:w-1/2 ml-6 md:ml-24'>
                         <h2 className='text-3xl md:text-6xl font-bold tracking-wide lg:leading-tight'>Affordable <br /> Price For Car Servicing</h2>
-                        <p className='md:tracking-wide lg:leading-7'>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
+                        <p className='md:tracking-wide lg:leading-7 capitalize'>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
                         <div>
                             <button className='my-btn mr-5'>Discover More</button>
                             <button className='rounded-md px-3 py-2 md:px-6 md:py-4 text-[18px] border font-semibold text-white hover:bg-[#FF3811] hover:border-[#FF3811] transition duration-200'>Latest Project</button>

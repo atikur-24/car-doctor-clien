@@ -11,7 +11,7 @@
 }
 
 .navbar-container{
-    @apply px-4 md:px-24 lg:px-8 py-8 lg:py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl
+    @apply px-4 md:px-24 lg:px-8 pt-8 lg:pt-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl
 }
 
 .my-btn{
