@@ -4,9 +4,16 @@ import google from '../../assets/images/login/google.png';
 import facebook from '../../assets/images/login/facebook.png';
 import twitter from '../../assets/images/login/twitter.png';
 import Navbar from '../Shared/Navbar/Navbar';
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../providers/Authprovider';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
+    const { createUser, googleSignIn } = useContext(AuthContext);
+    const [ showPassword, setShowPassword ] = useState(false);
+    const [ showConfirm, setShowConfirm ] = useState(false);
+    
     const handleSignUp = event => {
         event.preventDefault();
 
@@ -15,8 +22,61 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const confirm = form.confirm.value;
-
         console.log(name, email, password, confirm );
+
+        if( password.length < 6 ) {
+            return Swal.fire({
+                title: 'Warning!',
+                text: 'Password must be 6 characters or longer',
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+              })
+        }
+        else if (password !== confirm) {
+            return Swal.fire({
+                title: 'Warning!',
+                text: 'Your password did not match',
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+              })
+        }
+
+        // sign up a new user
+        createUser(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your Account has been created Successfully!',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                  })
+                  form.reset();
+            })
+            .catch(error => {
+                const message = error.message;
+                console.log(message);
+                Swal.fire({
+                    title: 'Error!',
+                    text: message,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                  })
+            })
+    }
+
+    // google sign in
+    const handleGoogleSignIn = () => {
+    googleSignIn()
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
+        .catch(error => {
+            const message = error.message;
+            console.log(message);
+        })
     }
 
     return (
@@ -48,18 +108,18 @@ const SignUp = () => {
                                         <label className="label">
                                             <span className="label-text font-semibold">Password</span>
                                         </label>
-                                        <input required type="password" placeholder="Your password" name="password" className="input input-bordered" />
-                                        <span className='absolute top-[63%] right-4 cursor-pointer'>
-                                            <FaEye />
+                                        <input required type={showPassword ? "text" : "password"} placeholder="Your password" name="password" className="input input-bordered" />
+                                        <span onClick={ () => setShowPassword(!showPassword) } className='absolute top-[63%] right-4 cursor-pointer'>
+                                            { showPassword ? <FaEyeSlash />  : <FaEye /> }
                                         </span>
                                     </div>
                                     <div className="form-control relative">
                                         <label className="label">
                                             <span className="label-text font-semibold">Confirm Password</span>
                                         </label>
-                                        <input required type="password" placeholder="Your confirm password" name="confirm" className="input input-bordered" />
-                                        <span className='absolute top-[63%] right-4 cursor-pointer'>
-                                            <FaEye />
+                                        <input required type={showConfirm ? "text" : "password"} placeholder="Your confirm password" name="confirm" className="input input-bordered" />
+                                        <span onClick={ () => setShowConfirm(!showConfirm) } className='absolute top-[63%] right-4 cursor-pointer'>
+                                        { showConfirm ? <FaEyeSlash />  : <FaEye /> }
                                         </span>
                                     </div>
                                     <div className="form-control">
@@ -69,7 +129,7 @@ const SignUp = () => {
                                     <div className='flex justify-center gap-4'>
                                         <img src={facebook} alt="google" className='bg-[#F5F5F8] p-4 rounded-full cursor-pointer' />
                                         <img src={twitter} alt="google" className='bg-[#F5F5F8] p-4 rounded-full cursor-pointer' />
-                                        <img src={google} alt="google" className='bg-[#F5F5F8] p-4 rounded-full cursor-pointer' />
+                                        <img onClick={handleGoogleSignIn} src={google} alt="google" className='bg-[#F5F5F8] p-4 rounded-full cursor-pointer' />
                                     </div>
                                     <p className='text-[18px] text-center text-gray-500'>Already have an account? <Link to='/login' className='text-[#FF3811] font-semibold'>Login</Link></p>
                                 </form>
