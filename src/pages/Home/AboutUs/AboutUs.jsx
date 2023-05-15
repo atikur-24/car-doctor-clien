@@ -5,8 +5,8 @@ const AboutUs = () => {
     return (
         <div className='flex flex-col lg:flex-row gap-[61px]'>
             <div className='lg:w-1/2 relative'>
-                <img src={person} alt="person" className='rounded-xl w-10/12 h-[300px] md:h-[450px] bg-contain' />
-                <img src={parts} alt="person" className='rounded-xl absolute border-8 border-white w-[280px] md:w-[372px] md:h-[332px] bg-cover -bottom-10 md:top-1/2 right-1 md:right-2' />
+                <img src={person} alt="person" className='rounded-xl w-10/12 h-[300px] md:h-[450px] object-cover' />
+                <img src={parts} alt="person" className='rounded-xl absolute border-8 border-white w-[280px] md:w-[372px] md:h-[332px] object-cover -bottom-10 md:top-1/2 right-1 md:right-2' />
             </div>
             <div className='lg:w-1/2 space-y-6 max-h-full pr-6 md:pr-10'>
                 <h5 className='text-xl font-semibold md:font-bold text-[#FF3811]'>About Us</h5>
