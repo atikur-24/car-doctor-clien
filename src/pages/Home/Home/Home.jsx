@@ -1,3 +1,4 @@
+import TopBanner from "../../Shared/TopBanner/TopBanner";
 import AboutUs from "../AboutUs/AboutUs";
 import Banner from "../Banner/Banner";
 import Services from "../Services/Services";
@@ -10,6 +11,9 @@ const Home = () => {
             <Services />
 
           <div className="space-y-3">
+            <TopBanner>
+                Hello home
+            </TopBanner>
             <h3 className="text-5xl text-center font-extrabold text-red-500">Hello tailwind</h3>
             <h3 className="text-5xl text-center font-bold text-[#FF3811]">Hello tailwind</h3>
             <h3 className="text-5xl text-center font-semibold">Hello tailwind</h3>

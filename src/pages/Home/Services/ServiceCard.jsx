@@ -1,7 +1,8 @@
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
-  const { img, title, price } = service;
+  const { _id, img, title, price } = service;
 
   return (
     <div className="card card-compact rounded-lg border border-inherit p-6">
@@ -10,9 +11,9 @@ const ServiceCard = ({ service }) => {
       </figure>
       <div className="space-y-5">
         <h2 className="card-title text-2xl font-bold pt-5">{title}</h2>
-        <div className="inline-flex items-center text-xl font-semibold text-[#FF3811]">
+        <div className="inline-flex items-center justify-between w-full text-xl font-semibold text-[#FF3811]">
           <p>Price: ${price}</p>
-          <span> <FaArrowRight /> </span>
+          <Link to={`/checkout/${_id}`}> <FaArrowRight /> </Link>
         </div>
       </div>
     </div>

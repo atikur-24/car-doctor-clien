@@ -10,7 +10,7 @@ import { AuthContext } from '../../providers/Authprovider';
 import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { createUser, googleSignIn } = useContext(AuthContext);
+    const { createUser, googleSignIn, updateUserProfile } = useContext(AuthContext);
     const [ showPassword, setShowPassword ] = useState(false);
     const [ showConfirm, setShowConfirm ] = useState(false);
     
@@ -45,6 +45,7 @@ const SignUp = () => {
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
+                updateUserProfile(name, loggedUser)
                 console.log(loggedUser);
                 Swal.fire({
                     title: 'Success!',

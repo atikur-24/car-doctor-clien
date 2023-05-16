@@ -10,7 +10,7 @@ const Banner = () => {
         <div className="carousel w-full">
             <div id="slide1" className="carousel-item relative w-full md:h-[600px]">
                 <img src={banner1} className="w-full rounded-xl" />
-                <div className='absolute h-full rounded-xl flex items-center  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)]'>
+                <div className='absolute h-full rounded-xl flex items-center bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)]'>
                     <div className='text-white space-y-7 md:w-1/2 ml-6 md:ml-24'>
                         <h2 className='text-3xl md:text-6xl font-bold tracking-wide lg:leading-tight'>Affordable <br /> Price For Car Servicing</h2>
                         <p className='md:tracking-wide lg:leading-7 capitalize'>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
