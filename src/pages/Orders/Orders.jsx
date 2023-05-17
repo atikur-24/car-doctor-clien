@@ -6,13 +6,14 @@ import OrdersRow from "./OrdersRow";
 const Orders = () => {
     const { user } = useContext(AuthContext);
     const [orders, setOrders] = useState([]);
+    const [controls, setControls] = useState(false);
 
     const url = `http://localhost:5000/orders?email=${user?.email}`
     useEffect( () => {
         fetch(url)
          .then(res => res.json())
          .then(data => setOrders(data))
-    }, [])
+    }, [ controls ])
 
     return (
         <section>
@@ -23,7 +24,7 @@ const Orders = () => {
                 <table className="table w-full">
                     <tbody>
                         {
-                            orders.map( order => <OrdersRow key={order._id} order={order} />)
+                            orders.map( order => <OrdersRow key={order._id} order={order} controls={controls} setControl={setControls} />)
                         }
                     </tbody>
                 </table>

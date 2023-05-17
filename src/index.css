@@ -20,6 +20,12 @@
 .my-btn{
     @apply bg-[#FF3811] rounded-md px-3 py-2 md:px-6 md:py-4 text-[18px] font-semibold text-white
 }
+.my-btn-pending{
+    @apply bg-[#FF3811] rounded-md px-2 py-2 md:px-4 md:py-2 font-medium text-white
+}
+.my-btn-confirm{
+    @apply text-[#29B170] border border-[#29B170] rounded-md px-2 py-2 md:px-4 md:py-2 font-medium
+}
 
 .my-outline-btn{
     @apply text-[#FF3811] border border-[#FF3811] rounded-md px-3 py-2 md:px-6 md:py-4 text-[18px] font-semibold hover:bg-[#FF3811] hover:text-white transition duration-200
