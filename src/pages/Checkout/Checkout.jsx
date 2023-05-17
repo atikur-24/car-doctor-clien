@@ -18,6 +18,7 @@ const Checkout = () => {
         const email = form?.email?.value;
         const date = form.date.value;
         const message = form.message.value;
+        const price = form.amount.value;
         const order = {
             customerName: name,
             phone,
@@ -26,11 +27,12 @@ const Checkout = () => {
             message,
             img,
             service: title,
-            service_id: _id
+            service_id: _id,
+            price
         }
         console.log(order);
 
-        fetch('http://localhost:5000/checkout', {
+        fetch('http://localhost:5000/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -43,7 +45,7 @@ const Checkout = () => {
                 if(data.insertedId) {
                     Swal.fire({
                         title: 'Success!',
-                        text: 'Service checkout Successfully!',
+                        text: 'Service order Successfully!',
                         icon: 'success',
                         confirmButtonText: 'Ok'
                       })
