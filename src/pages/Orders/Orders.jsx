@@ -2,18 +2,32 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/Authprovider";
 import TopBanner from "../Shared/TopBanner/TopBanner";
 import OrdersRow from "./OrdersRow";
+import { useNavigate } from "react-router-dom";
 
 const Orders = () => {
     const { user } = useContext(AuthContext);
     const [orders, setOrders] = useState([]);
     const [controls, setControls] = useState(false);
+    const navigate = useNavigate()
 
     const url = `http://localhost:5000/orders?email=${user?.email}`
     useEffect( () => {
-        fetch(url)
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('car-access-token')}`
+            }
+        })
          .then(res => res.json())
-         .then(data => setOrders(data))
-    }, [ controls ])
+         .then(data => {
+            if(!data.error) {
+                setOrders(data)
+            }
+            else {
+                navigate('/')
+            }
+         })
+    }, [ controls ]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <section>

@@ -9,6 +9,8 @@ import { AuthContext } from '../../providers/Authprovider';
 import Swal from 'sweetalert2';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
+
+
 const auth = getAuth(app);
 
 const Login = () => {
@@ -25,15 +27,14 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email, password);
-
         // email password sign in
         userLogin(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 form.reset();
-                navigate(from, { replace: true })
+                navigate(from,  {replace: true})
+
             })
             .catch(error => {
                 const message = error.message;
